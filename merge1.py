@@ -20,43 +20,56 @@ for filename in glob.glob(filelocation+"*."+fileform):
 print("在默认文件夹下有%d个文档哦"%len(filearray))
 ge=len(filearray)
 matrix = [None]*ge
+
+a=['14计科','14软件','14物联','14数学','14信科',
+       '15计科','15软件','15数学','15信科',
+       '16计科','16软件','16物联','16数学','16信科',
+       '17计科','17软件','17物联','17数学','17信科']
+sheet=['14计科','14软件','14物联','14数学','14信科',
+       '15计科','15软件','15数学','15信科',
+       '16计科','16软件','16物联','16数学','16信科',
+       '17计科','17软件','17物联','17数学','17信科']
+sh=sheet
 #实现读写数据
 #下面是将所有文件读数据到三维列表cell[][][]中（不包含表头）
+
 import xlrd
-
-for i in range(ge):
-    fname=filearray[i]
-    bk=xlrd.open_workbook(fname)
-    try:
-        sh=bk.sheet_by_name("17计科")
-    except:
-        print ("在文件%s中没有找到sheet1，读取文件数据失败,要不你换换表格的名字？" %fname)
-    # sh = bk.sheet_by_name("sheet1")
-    nrows=sh.nrows
-    ncols = sh.ncols
-
-    matrix[i] = [0]*(ncols)
-
-    for m in range(ncols):
-        matrix[i][m] = ["0"]*nrows
-    for k in range(0,ncols):
-        for j in range(0,nrows):
-            matrix[i][k][j]=sh.cell(j,k).value
-            print(matrix)
-# 下面是写数据到新的表格test.xls中哦
 import xlwt
 filename=xlwt.Workbook()
-sheet=filename.add_sheet("17计科")
-#下面是把表头写上
-# for i in range(0,len(biaotou)):
-#     sheet.write(i,0,biaotou[i])
-# 求和前面的文件一共写了多少行
-zh=0
-for i in range(ge):
-    for j in range(0,len(matrix[i])):
+for sheets in range(0,len(a)):
+    for i in range(ge):
+        fname = filearray[i]
+        bk = xlrd.open_workbook(fname)
+        try:
+            sh[sheets]=bk.sheet_by_name(a[sheets])
+        except:
+            print ("在文件%s中没有找到sheet1，读取文件数据失败,要不你换换表格的名字？" %fname)
+        # sh = bk.sheet_by_name("sheet1")
+        nrows=sh[sheets].nrows
+        ncols = sh[sheets].ncols
+        matrix[i] = [0]*(ncols)
+        for m in range(ncols):
+            matrix[i][m] = ["0"]*nrows
+        for k in range(0,ncols):
+            for j in range(0,nrows):
+                matrix[i][k][j]=sh[sheets].cell(j,k).value
+                # print(matrix)
+    # 下面是写数据到新的表格test.xls中哦
+    sheet[sheets]=filename.add_sheet(a[sheets])
+    #下面是把表头写上
+    # for i in range(0,len(biaotou)):
+    #     sheet.write(i,0,biaotou[i])
+    # 求和前面的文件一共写了多少行
+    zh=3
+    z=0
+    for j in range(0, 3):
         for k in range(len(matrix[i][j])):
-            sheet.write(k,zh,matrix[i][j][k])
-        zh=zh+1
-print("我已经将%d个文件合并成1个文件，并命名为%s.xls.快打开看看正确不？"%(ge,file))
+            sheet[sheets].write(k, z, matrix[i][j][k])
+        z=z+1
+    for i in range(ge):
+        for j in range(3,len(matrix[i])):
+            for k in range(len(matrix[i][j])):
+                sheet[sheets].write(k,zh,matrix[i][j][k])
+            zh=zh+1
+    print("我已经将%d个文件合并成1个文件，并命名为%s.xls.快打开看看正确不？"%(ge,file))
 filename.save(filedestination+file+".xls")
-

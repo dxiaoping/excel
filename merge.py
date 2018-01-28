@@ -45,6 +45,7 @@ for i in range(ge):
 import xlwt
 filename=xlwt.Workbook()
 sheet=filename.add_sheet("Sheet1")
+sheet1=filename.add_sheet("S")
 #下面是把表头写上
 for i in range(0,len(biaotou)):
     sheet.write(i,0,biaotou[i])
@@ -54,6 +55,15 @@ for i in range(ge):
     for j in range(len(matrix[i])):
         for k in range(len(matrix[i][j])):
             sheet.write(k,zh,matrix[i][j][k])
+        zh=zh+1
+for i in range(0,len(biaotou)):
+    sheet1.write(i,0,biaotou[i])
+#求和前面的文件一共写了多少行
+zh=1
+for i in range(ge):
+    for j in range(len(matrix[i])):
+        for k in range(len(matrix[i][j])):
+            sheet1.write(k,zh,matrix[i][j][k])
         zh=zh+1
 print("我已经将%d个文件合并成1个文件，并命名为%s.xls.快打开看看正确不？"%(ge,file))
 filename.save(filedestination+file+".xls")
