@@ -36,6 +36,11 @@ sh=sheet
 import xlrd
 import xlwt
 filename=xlwt.Workbook()
+top = filearray[3]
+filearray[3] = filearray[2]
+filearray[2] = filearray[1]
+filearray[1] = filearray[0]
+filearray[0] = top
 for sheets in range(0,len(a)):
     for i in range(ge):
         fname = filearray[i]
@@ -68,6 +73,10 @@ for sheets in range(0,len(a)):
         z=z+1
     for i in range(ge):
         for j in range(3,len(matrix[i])):
+            if(matrix[i][j][0] == '备注'):
+                continue;
+            if(matrix[i][j][0] == '寝室加分'):
+                matrix[i][j][0] = '优差寝'
             for k in range(len(matrix[i][j])):
                 sheet[sheets].write(k,zh,matrix[i][j][k])
             zh=zh+1
