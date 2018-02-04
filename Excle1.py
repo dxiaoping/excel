@@ -93,16 +93,14 @@ for sheets in range(0,len(a)):
                     sheet[sheets].write(k,zh,matrix[i][j][k])
                 zh=zh+1
         #---------新建列计算百分比------#
-        '''
-        matrix[i][4][0] = '百分比'
-        sheet[sheets].write(0, 5, matrix[i][4][0])
-        for q in range(1,len(matrix[i][2])):
-            if(type(matrix[i][3][q]) == type(0.0)):
-                if(matrix[i][3][q] > 0):
-                    if (type(matrix[i][4][q]) == type(0.0)):
-                        if(matrix[i][4][q] > 0):
-                            matrix[i][4][q] = matrix[i][3][q]/matrix[i][4][q]
-                            sheet[sheets].write(q, 5, matrix[i][4][q])
-                            '''
+        # matrix[i][4][0] = '百分比'
+        # sheet[sheets].write(0, 5, matrix[i][4][0])
+        # for q in range(1,len(matrix[i][2])):
+        #     if(type(matrix[i][3][q]) == type(0.0)):
+        #         if(matrix[i][3][q] > 0):
+        #             if (type(matrix[i][4][q]) == type(0.0)):
+        #                 if(matrix[i][4][q] > 0):
+        #                     matrix[i][4][q] = matrix[i][3][q]/matrix[i][4][q]
+        #                     sheet[sheets].write(q, 5, matrix[i][4][q])
     print("我已经将%d个文件合并成1个文件，并命名为%s.xls.快打开看看正确不？"%(ge,file))
 filename.save(filedestination+file+".xls")
