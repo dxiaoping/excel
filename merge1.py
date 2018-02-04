@@ -76,20 +76,24 @@ for sheets in range(0,len(a)):
             if((matrix[i][j][0] == '总分') | (matrix[i][j][0] == '寝室总分')):
                 for k in range(len(matrix[i][j])):#行号
                     # ----------改表头----------#
-                    # if(matrix[i][j][0] == '总分'):
-                    #     matrix[i][j][0] = '寝室总分'
+                    '''
+                    if(matrix[i][j][0] == '总分'):
+                        matrix[i][j][0] = '寝室总分'
+                        '''
                     # -------加总分--------#
-                    # if((matrix[i][j][0] == '总分') & (k > 0)):
-                    #     matrix[i][j][0] == '寝室总分'
-                    #     sun = 0.0
-                    #     for q in range(3,8):
-                    #         if(matrix[i][q][k] == '优差寝'):
-                    #             sun ='寝室总分'
-                    #             break
-                    #         if(type(matrix[i][q][k]) != type(0.0)):
-                    #             matrix[i][q][k] =0.0
-                    #         sun = matrix[i][q][k] + sun
-                    #     matrix[i][j][k] = sun
+                    '''
+                    if((matrix[i][j][0] == '总分') & (k > 0)):
+                        matrix[i][j][0] == '寝室总分'
+                        sun = 0.0
+                        for q in range(3,8):
+                            if(matrix[i][q][k] == '优差寝'):
+                                sun ='寝室总分'
+                                break
+                            if(type(matrix[i][q][k]) != type(0.0)):
+                                matrix[i][q][k] =0.0
+                            sun = matrix[i][q][k] + sun
+                        matrix[i][j][k] = sun
+                    '''
                     sheet[sheets].write(k,zh,matrix[i][j][k])
                 zh=zh+1
         #---------新建列计算百分比------#
